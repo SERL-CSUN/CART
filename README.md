@@ -1,8 +1,9 @@
-# CART
-Campus Autonomous Robot Tours
+# CART SLAM System
+## Campus Autonomous Robot Tours SLAM System
+This project is a SLAM subsystem that can run as a payload on a mobile platform such as the Clearpath Husky or Boston Dynamics Spot that can be used to aid in giving a virtual tour of the CSUN Campus. The SLAM subsystem is responsible for creating a realtime map as the mobile robot moves through the environment.
 
 ## Current State
-Currently, the full SLAM system runs from a Docker container created by Nvidia and customized by us to use the latest version of certain software packages.  
+Currently, the full SLAM system runs from a Docker container created by Nvidia and customized by us to use the latest version of certain software packages. 
   
 **Hardware:**  
 - Jetson Nano 4GB version
