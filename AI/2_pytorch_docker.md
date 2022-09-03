@@ -79,7 +79,18 @@ After you are done editing the file. press `:wq` to save the file and exit.
 Note: you only do `:q` to exit `vim` editor.
 
 Now that you have set your default-runtime as nvidia you you should see the following the whole file in the vim editor as follows:
-![Image of vim default-runtime set as nvidia]()
+![Image of vim default-runtime set as nvidia](https://github.com/SERL-CSUN/CART/blob/main/AI/Images/vim_default_runtime_nvidia.png)
+
+
+Now you can try downloading the pytorch nvidia ngc container again by running the following command. 
+
+```sh
+$ sudo docker run --gpus all -it --rm nvcr.io/nvidia/pytorch:22.08-py3
+```
+
+It should download 7GB container and run it as shown below:
+
+![pytorch nvidia ngc]()
 
 
 
