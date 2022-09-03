@@ -90,7 +90,7 @@ $ sudo docker run --gpus all -it --rm nvcr.io/nvidia/pytorch:22.08-py3
 
 It should download 7GB container and run it as shown below:
 
-![pytorch nvidia ngc]()
+![pytorch nvidia ngc](https://github.com/SERL-CSUN/CART/blob/main/AI/Images/pytorch_nvidia_ngc.png)
 
 
 
