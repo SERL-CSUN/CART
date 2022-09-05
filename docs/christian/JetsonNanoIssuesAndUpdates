@@ -55,5 +55,35 @@ July 24 2022
   I also needed to build nav2_msgs for some reason. Somehow when building overlay packages, they sometimes can't find some other packages such as nav2_msgs which was installed by default but maybe to an unexpected directory.
   
   Built rtabmap_ros in overlay workspace. Took 14 hours to build.
+
+----------------------------------------------------------------------------------------------------
+September 5 2022
+---------------------
+- Issue: realsense-ros built with librealsense v2.50.0 does not publish IMU messages.
+  Solution: Downgrade to use librealsense v2.48.0
+  To do downgrade what I did was built librealsense with CUDA support using the buildLibrealsense.sh script
+  found in ~/Repos/installRealSenseSDK directory as followed: ./buildLibrealsense.sh -v v2.48.0
+  the -v v2.48.0 grabs the git repo in librealsense with the tag v2.48.0 and builds that version from source.
+  Doing it this way did not remove the previous librealsense version I had installed myself which was v2.50.0.
+  This might cause issues.
+  What I did was that a copied the librealsense so's for 2.48.0 that were installed in /usr/local/lib to /opt/ros/foxy/install/lib directory.
+  That is the directory that is used by the old realsense-ros version that came with the docker image. Now the old realsense-ros version
+  will run with CUDA suppport. For now I will keep the newer realsense-ros in the overlay ~/dev_ws directory and leave that as built
+  against v2.50.0. We can test how effective the IMU data can be by comparing between these two realsense-ros versions, one with IMU and the other using only rgbd-odometry.
+  I created an issue in realsense-ros github issue #2470 to investigate why IMU is not working with newer versions of librealsense.
+
+- Issue: Could not remember how I had created the map of our hallway and living room.
+  Solution: I am using the older realsense-ros built with v2.48.0 (but the one with CUDA support) in the underlay to be able to get IMU data
+            and using the rtabmap_ros version in the overlay as well as the imu_madgwick_filter in the overlay.
+  - Step 1:  Run the first command from RunningSLAM document to start D455 camera. 
+             Make sure the librealsense version is v2.48.0 (it should say in initial logs of starting realsense-ros)
+    Step 2:  Connect to current cart/slam container and source the overlay and run imu_madwick_filter using second command in RunningSLAM doc.
+    Step 3:  Connect another terminal to cart/slam container and source the overlay and run the rtabmap command found in RunningSLAM doc.
+    Step 4:  Open rviz2. I opened it on my machine that has a full ROS 2 system inside a docker container.
+    Step 5:  Choose map as the Fixed Frame inside of rviz. This is to get the full map and not the current map that is relative to the camera.
+    Step 6:  Add the cloud_map topic that is a PointCloud.
+    Note that for these steps you should also make sure that you are changing the RMW_IMPLEMENTATION env variable to rmw_fastrtps_cpp
+    for each terminal you connect to cart/slam container. And make sure you run ros2 daemon stop then ros2 daemon start in each terminal
+    after you've changed the RMW_IMPLEMENTATION in order for that change to take effect in the ROS 2 system.
   
   
