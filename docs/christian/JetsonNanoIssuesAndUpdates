@@ -85,5 +85,7 @@ September 5 2022
     Note that for these steps you should also make sure that you are changing the RMW_IMPLEMENTATION env variable to rmw_fastrtps_cpp
     for each terminal you connect to cart/slam container. And make sure you run ros2 daemon stop then ros2 daemon start in each terminal
     after you've changed the RMW_IMPLEMENTATION in order for that change to take effect in the ROS 2 system.
+    
+-  Require Barrel jack connection for more power to be able to view realtime video feed and run SLAM at once.
   
   
