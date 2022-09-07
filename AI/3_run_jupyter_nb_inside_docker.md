@@ -2,9 +2,14 @@
 
 1. First run the Nvidia NGC pytorch docker image
 
+Navigate to the TensorRT github clone on local laptop. And pull the docker image with the `-v` and `22.08-py3` for the latest tag.
 ```sh
-sudo docker run --gpus=all --rm -it -v $PWD:/TensorRT --net=host --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 nvcr.io/nvidia/pytorch:22.08-py3 bash
+(base) arcs-base@arcs-base:~/Robo_vision/TensorRT$ 
+sudo docker run --gpus=all --rm -it -v $PWD:/Torch-TensorRT --net=host --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 nvcr.io/nvidia/pytorch:22.08-py3 bash
+
 ```
+
+
 
 then go to the notebooks directory inside the docker
 
