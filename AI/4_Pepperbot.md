@@ -7,3 +7,4 @@
 4. http://doc.aldebaran.com/2-4/family/pepper_user_guide/index_pepper_user.html
 5. http://doc.aldebaran.com/2-4/dev/python/index.html
 
+- https://www.microsoft.com/en-us/research/uploads/prod/2023/02/ChatGPT___Robotics.pdf
