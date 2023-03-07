@@ -1,0 +1,38 @@
+Use wireshark to get the lidar ip address
+
+Subnet Mask: 255.255.255.0
+sudo ifconfig <your ethernet interface> <your custom system ip>
+sudo route add <your lidar ip>  <your ethernet interface>
+
+Open web browser with lidar ip address
+
+
+
+Installing lidar in Rviz for ros2 foxy:
+	1) Install lidar driver for the specific ros distro(sudo apt install ros-foxy-velodyne)
+	2) sudo apt-get install ros-foxy-diagnostic-updater
+	3) sudo apt install libpcap0.8-dev
+	4) sudo apt update
+	5) Make a separate velodyne workspace and clone the distro repository into the src folder of that workspace
+	6) Colcon build
+	7) Go to the velodyne_driver/config/vlp16.yaml file and change the parameter according to the lidar specifications. Make sure the ip and the port are the same as you see in the web browser when you enter the lidar's ip address.
+        velodyne_driver_node:
+        ros__parameters:
+            device_ip: <your lidar's ip address>
+            gps_time: false
+            time_offset: 0.0
+            enabled: true
+            read_once: false
+            read_fast: false
+            repeat_delay: 0.0
+            frame_id: velodyne
+            model: VLP16
+            rpm: 600.0
+            port: 2368
+            timestamp_first_packet: false
+	8) Once you have edited the config file, save it and colcon build the workspace again.
+	9) Source the install/setup.bash file inside the velodyne workspace
+	10) ros2 launch velodyne velodyne-all-nodes-VLP16-launch.py 
+    11) launch rviz2 in a separate terminal
+    12) Add by topic in rviz and add the pointcloud or the laserscan topics
+    13) Edit the fixed frame id according to the one mentioned in the velodyne_driver/config/vlp16.yaml file. In this case it is velodyne.
