@@ -1,3 +1,8 @@
+https://blog.csdn.net/qq_45701501/article/details/119275134
+https://github.com/ros-drivers/velodyne/
+https://www.ncnynl.com/archives/202201/4965.html
+
+
 Use wireshark to get the lidar ip address
 
 Subnet Mask: 255.255.255.0
