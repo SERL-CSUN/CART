@@ -1,0 +1,38 @@
+ros2 launch rtabmap_ros realsense_d400.launch.py
+ssh cart-slamv2@192.168.1.216
+
+
+cd dev_ws
+sudo docker images
+cd Repos/
+cd jetson-containers/
+ls scripts/
+
+
+./scripts/docker_run.sh -c my-ros-foxy 
+sudo docker run -it --rm --network=host ros-foxy-rtabmap-jetpack5 bash
+
+
+echo $LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH/opt/ros/foxy/lib
+
+
+echo $LD_LIBRARY_PATH
+ros2 launch rtabmap_ros realsense_d400.launch.py 
+
+
+
+
+
+Switch between the DDS 
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+
+ros2 damon stop
+ros2 damon start
+
+
+
+
